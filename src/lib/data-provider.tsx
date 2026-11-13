@@ -699,7 +699,7 @@ export function SupabaseDataProvider({ children }: { children: ReactNode }) {
           if (fields.coverImageUrl !== undefined) payload.cover_image_url = fields.coverImageUrl;
           if (fields.iconEmoji !== undefined) payload.icon_emoji = fields.iconEmoji;
           if (fields.wordCount !== undefined) payload.word_count = fields.wordCount;
-          await supabase.from("documents").update(payload).eq("id", id);
+          await supabase.from("documents").update(payload as any).eq("id", id);
         },
         onMutate: async ({ id, fields }) => {
           await queryClient.cancelQueries({ queryKey: ["document", id] });
