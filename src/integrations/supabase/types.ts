@@ -122,6 +122,349 @@ export type Database = {
           },
         ]
       }
+      construction_drawing_comments: {
+        Row: {
+          anchor_x: number
+          anchor_y: number
+          assigned_to: string | null
+          body: string
+          created_at: string
+          created_by: string
+          id: string
+          page_number: number
+          resolved_at: string | null
+          resolved_by: string | null
+          revision_id: string
+          status: string
+        }
+        Insert: {
+          anchor_x?: number
+          anchor_y?: number
+          assigned_to?: string | null
+          body: string
+          created_at?: string
+          created_by: string
+          id?: string
+          page_number?: number
+          resolved_at?: string | null
+          resolved_by?: string | null
+          revision_id: string
+          status?: string
+        }
+        Update: {
+          anchor_x?: number
+          anchor_y?: number
+          assigned_to?: string | null
+          body?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          page_number?: number
+          resolved_at?: string | null
+          resolved_by?: string | null
+          revision_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "construction_drawing_comments_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_drawing_comments_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_drawing_comments_resolved_by_fkey"
+            columns: ["resolved_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_drawing_comments_revision_id_fkey"
+            columns: ["revision_id"]
+            isOneToOne: false
+            referencedRelation: "construction_drawing_revisions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      construction_drawing_revisions: {
+        Row: {
+          annotation_data: Json
+          approved_at: string | null
+          approved_by: string | null
+          calibration_m_per_unit: number | null
+          created_at: string
+          drawing_id: string
+          file_name: string
+          file_size_bytes: number
+          id: string
+          mime_type: string
+          page_count: number
+          review_note: string | null
+          revision: string
+          status: string
+          storage_path: string
+          uploaded_by: string
+        }
+        Insert: {
+          annotation_data?: Json
+          approved_at?: string | null
+          approved_by?: string | null
+          calibration_m_per_unit?: number | null
+          created_at?: string
+          drawing_id: string
+          file_name: string
+          file_size_bytes?: number
+          id?: string
+          mime_type?: string
+          page_count?: number
+          review_note?: string | null
+          revision: string
+          status?: string
+          storage_path: string
+          uploaded_by: string
+        }
+        Update: {
+          annotation_data?: Json
+          approved_at?: string | null
+          approved_by?: string | null
+          calibration_m_per_unit?: number | null
+          created_at?: string
+          drawing_id?: string
+          file_name?: string
+          file_size_bytes?: number
+          id?: string
+          mime_type?: string
+          page_count?: number
+          review_note?: string | null
+          revision?: string
+          status?: string
+          storage_path?: string
+          uploaded_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "construction_drawing_revisions_approved_by_fkey"
+            columns: ["approved_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_drawing_revisions_drawing_id_fkey"
+            columns: ["drawing_id"]
+            isOneToOne: false
+            referencedRelation: "construction_drawings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_drawing_revisions_uploaded_by_fkey"
+            columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      construction_drawings: {
+        Row: {
+          created_at: string
+          created_by: string
+          discipline: string
+          drawing_number: string
+          id: string
+          project_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          discipline?: string
+          drawing_number: string
+          id?: string
+          project_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          discipline?: string
+          drawing_number?: string
+          id?: string
+          project_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "construction_drawings_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_drawings_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "construction_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      construction_project_members: {
+        Row: {
+          assigned_by: string | null
+          created_at: string
+          project_id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          assigned_by?: string | null
+          created_at?: string
+          project_id: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          assigned_by?: string | null
+          created_at?: string
+          project_id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "construction_project_members_assigned_by_fkey"
+            columns: ["assigned_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_project_members_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "construction_projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_project_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      construction_projects: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string
+          description: string
+          id: string
+          name: string
+          site: string
+          status: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          code?: string
+          created_at?: string
+          created_by: string
+          description?: string
+          id?: string
+          name: string
+          site?: string
+          status?: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string
+          description?: string
+          id?: string
+          name?: string
+          site?: string
+          status?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "construction_projects_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_projects_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      construction_review_events: {
+        Row: {
+          action: string
+          actor_id: string
+          created_at: string
+          id: string
+          note: string | null
+          revision_id: string
+        }
+        Insert: {
+          action: string
+          actor_id: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          revision_id: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          revision_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "construction_review_events_actor_id_fkey"
+            columns: ["actor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "construction_review_events_revision_id_fkey"
+            columns: ["revision_id"]
+            isOneToOne: false
+            referencedRelation: "construction_drawing_revisions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       document_permissions: {
         Row: {
           created_at: string
@@ -460,6 +803,26 @@ export type Database = {
     Functions: {
       accept_pending_doc_permissions: { Args: never; Returns: number }
       accept_pending_invitations: { Args: never; Returns: number }
+      can_access_construction_file: {
+        Args: { _project_id: string; _user_id: string; _workspace_id: string }
+        Returns: boolean
+      }
+      can_access_construction_project: {
+        Args: { _project_id: string; _user_id: string }
+        Returns: boolean
+      }
+      can_manage_construction_project: {
+        Args: { _project_id: string; _user_id: string }
+        Returns: boolean
+      }
+      can_review_construction_drawing: {
+        Args: { _project_id: string; _user_id: string }
+        Returns: boolean
+      }
+      can_upload_construction_drawing: {
+        Args: { _project_id: string; _user_id: string }
+        Returns: boolean
+      }
       can_write_workspace: {
         Args: { _uid: string; _ws: string }
         Returns: boolean
