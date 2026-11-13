@@ -136,7 +136,7 @@ export class SupabaseYjsProvider {
 
       const { error } = await supabase
         .from("documents")
-        .update({ y_doc: b64 } as unknown as Record<string, unknown>)
+        .update({ y_doc: b64 } as any)
         .eq("id", this.documentId);
 
       if (error) console.error("[yjs] save error", error);
