@@ -109,7 +109,7 @@ export function useSubmitComment() {
         const { error } = await supabase.from("comment_threads").insert({
           id,
           document_id: input.documentId,
-          content_ref: input.contentRef as unknown as Record<string, unknown>,
+          content_ref: input.contentRef as any,
           created_by: user.id,
         });
         if (error) throw error;
@@ -121,7 +121,7 @@ export function useSubmitComment() {
         id: nanoid(),
         thread_id: threadId,
         user_id: user.id,
-        body: input.body,
+        body: input.body as any,
       });
       if (error) throw error;
 
@@ -232,7 +232,7 @@ export function useEditComment() {
       const { error } = await supabase
         .from("comments")
         .update({
-          body: input.body,
+          body: input.body as any,
           edited_at: new Date().toISOString(),
         })
         .eq("id", input.commentId);
