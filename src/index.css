@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Atlas/Slate theme (neutral, OKLCH) ─────────────────────────────
+ * Ported from Atlas's application.css. Neutral base with --sheet and
+ * --hairline custom tokens. Tailwind config maps --color-* vars to
+ * utility classes.
+ */
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    --color-background: oklch(1 0 0);
+    --color-foreground: oklch(0.145 0 0);
+    --color-card: oklch(1 0 0);
+    --color-card-foreground: oklch(0.145 0 0);
+    --color-popover: oklch(1 0 0);
+    --color-popover-foreground: oklch(0.145 0 0);
+    --color-primary: oklch(0.205 0 0);
+    --color-primary-foreground: oklch(0.985 0 0);
+    --color-secondary: oklch(0.97 0 0);
+    --color-secondary-foreground: oklch(0.205 0 0);
+    --color-muted: oklch(0.97 0 0);
+    --color-muted-foreground: oklch(0.556 0 0);
+    --color-accent: oklch(0.97 0 0);
+    --color-accent-foreground: oklch(0.205 0 0);
+    --color-destructive: oklch(0.577 0.245 27.325);
+    --color-destructive-foreground: oklch(0.985 0 0);
+    --color-border: oklch(0.922 0 0);
+    --color-input: oklch(0.922 0 0);
+    --color-ring: oklch(0.708 0 0);
+    --color-chart-1: oklch(0.7 0.15 195);
+    --color-chart-2: oklch(0.65 0.2 250);
+    --color-chart-3: oklch(0.6 0.18 280);
+    --color-chart-4: oklch(0.828 0.189 84.429);
+    --color-chart-5: oklch(0.769 0.188 70.08);
+    --color-sidebar: oklch(1 0 0);
+    --color-sidebar-foreground: oklch(0.145 0 0);
+    --color-sidebar-primary: oklch(0.205 0 0);
+    --color-sidebar-primary-foreground: oklch(0.985 0 0);
+    --color-sidebar-accent: oklch(0.97 0 0);
+    --color-sidebar-accent-foreground: oklch(0.205 0 0);
+    --color-sidebar-border: oklch(0.922 0 0);
+    --color-sidebar-ring: oklch(0.708 0 0);
+    --color-sheet: #fcfcfd;
+    --color-hairline: lch(91.9 0 282);
+  }
+
+  .dark {
+    --color-background: oklch(0.145 0 0);
+    --color-foreground: oklch(0.985 0 0);
+    --color-card: oklch(0.205 0 0);
+    --color-card-foreground: oklch(0.985 0 0);
+    --color-popover: oklch(0.205 0 0);
+    --color-popover-foreground: oklch(0.985 0 0);
+    --color-primary: oklch(0.922 0 0);
+    --color-primary-foreground: oklch(0.205 0 0);
+    --color-secondary: oklch(0.269 0 0);
+    --color-secondary-foreground: oklch(0.985 0 0);
+    --color-muted: oklch(0.269 0 0);
+    --color-muted-foreground: oklch(0.708 0 0);
+    --color-accent: oklch(0.269 0 0);
+    --color-accent-foreground: oklch(0.985 0 0);
+    --color-destructive: oklch(0.704 0.191 22.216);
+    --color-destructive-foreground: oklch(0.985 0 0);
+    --color-border: oklch(1 0 0 / 10%);
+    --color-input: oklch(1 0 0 / 15%);
+    --color-ring: oklch(0.556 0 0);
+    --color-chart-1: oklch(0.65 0.15 195);
+    --color-chart-2: oklch(0.6 0.2 250);
+    --color-chart-3: oklch(0.65 0.18 280);
+    --color-chart-4: oklch(0.627 0.265 303.9);
+    --color-chart-5: oklch(0.645 0.246 16.439);
+    --color-sidebar: oklch(0.205 0 0);
+    --color-sidebar-foreground: oklch(0.985 0 0);
+    --color-sidebar-primary: oklch(0.488 0.243 264.376);
+    --color-sidebar-primary-foreground: oklch(0.985 0 0);
+    --color-sidebar-accent: oklch(0.269 0 0);
+    --color-sidebar-accent-foreground: oklch(0.985 0 0);
+    --color-sidebar-border: oklch(1 0 0 / 10%);
+    --color-sidebar-ring: oklch(0.556 0 0);
+    --color-sheet: oklch(0.145 0 0);
+    --color-hairline: oklch(1 0 0 / 12%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ── Hairline border utilities ──────────────────────────────────────
+ * 0.5px solid lines for chrome/structural boundaries. */
+
+.border-hairline { border: 0.5px solid var(--color-hairline); }
+.border-t-hairline { border-top: 0.5px solid var(--color-hairline); }
+.border-r-hairline { border-right: 0.5px solid var(--color-hairline); }
+.border-b-hairline { border-bottom: 0.5px solid var(--color-hairline); }
+.border-l-hairline { border-left: 0.5px solid var(--color-hairline); }
+
+/* ── Peekable sidebar overrides ──────────────────────────────────── */
+
+[data-peek-state] .group\/sidebar-wrapper {
+  --sidebar-width: inherit !important;
+}
+
+[data-peek-state] [data-side] > div:last-child {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+[data-sidebar="sidebar"][data-mobile="true"] {
+  width: calc(100% - 45px) !important;
+}
+
+/* ── Scrollbar styling ────────────────────────────────────────────────
+ * Thin, subtle scrollbar matching the editor chrome
+ */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-thumb {
+  background-color: rgba(10, 18, 23, 0.08);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track { margin-top: 8px; margin-bottom: 8px; }
+
+/* ── Document prose styles for TipTap editor ─────────────────────────
+ * Spacing: 4px / 8px / 16px / 24px / 32px doubling scale
+ */
+.doc-prose {
+  /* Paragraphs — 16px/1.5 from --text-base */
+  & p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-foreground);
+    opacity: 0.9;
+  }
+  & p:has(+ p) {
+    margin-bottom: 8px;
+  }
+
+  /* Headings — sizes from design tokens */
+  & h1 { font-size: 34px; line-height: 1.15; margin-top: 32px; margin-bottom: 8px; font-weight: 600; }
+  & h2 { font-size: 24px; line-height: 1.4; margin-top: 24px; margin-bottom: 8px; font-weight: 600; }
+  & h3 { font-size: 20px; line-height: 1.6; margin-top: 16px; margin-bottom: 8px; font-weight: 600; }
+  & h4, & h5, & h6 { font-size: 16px; line-height: 1.5; margin-top: 8px; margin-bottom: 8px; font-weight: 600; }
+
+  /* Bold — medium weight, not heavy */
+  & b, & strong { font-weight: 500; }
+
+  /* Lists */
+  & ul, & ol {
+    padding-left: 16px;
+    margin: 8px 0 16px;
+  }
+  & ul ul, & ul ol, & ol ul, & ol ol {
+    margin: 8px 0;
+  }
+  & ul { list-style-type: disc; }
+  & ul ul { list-style-type: circle; }
+  & ul ul ul { list-style-type: square; }
+  & ol { list-style-type: decimal; }
+  & li {
+    padding-left: 8px;
+    padding-bottom: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* First child — no top margin */
+  & > *:first-child { margin-top: 0; }
+
+  /* Tables */
+  & table {
+    font-variant-numeric: tabular-nums;
+    table-layout: auto;
+    margin: 16px 0;
+    border-collapse: collapse;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+  & thead tr { border-bottom: 1px solid rgba(10, 18, 23, 0.1); }
+  & thead tr th { padding: 0 24px 12px 24px; }
+  & th { text-align: left; padding: 12px 24px; font-weight: 500; }
+  & tr { border-bottom: 1px solid rgba(10, 18, 23, 0.04); }
+  & td { padding: 12px 24px; vertical-align: top; }
+  & thead tr th:first-child,
+  & tbody tr td:first-child { padding-left: 0; }
+
+  /* Horizontal rules */
+  & hr {
+    height: 0;
+    border: 0;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Inline code */
+  & code {
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, monospace);
+    font-size: 15px;
+    background-color: var(--color-muted);
+    border-radius: 6px;
+    padding: 2px 5px;
+  }
+
+  /* Links */
+  & a {
+    text-decoration: underline;
+    overflow-wrap: break-word;
+  }
+
+  /* Blockquotes — 4px left bar, no border-left */
+  & blockquote {
+    padding: 0 1.5em;
+    margin: 16px 0;
+    position: relative;
+    border-left: none;
+  }
+  & blockquote::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--color-muted);
+    border-radius: 4px;
+  }
+  & blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* TipTap placeholder */
+  & .is-empty::before {
+    color: var(--color-muted-foreground);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+  & p.is-empty:first-child::before {
+    content: attr(data-placeholder);
+  }
+
+  /* Collaboration cursors */
+  & .collaboration-cursor__caret {
+    border-left: 1px solid var(--cursor-color);
+    border-right: 1px solid var(--cursor-color);
+    background-color: var(--cursor-color);
+    margin-left: -1px;
+    margin-right: -1px;
+    pointer-events: none;
+    position: relative;
+    word-break: normal;
+    z-index: 100;
+  }
+  & .collaboration-cursor__label {
+    background-color: var(--cursor-color);
+    border-radius: 3px 3px 3px 0;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    left: -1px;
+    line-height: normal;
+    padding: 0.1rem 0.3rem;
+    position: absolute;
+    top: -1.4em;
+    user-select: none;
+    white-space: nowrap;
+    color: white;
+  }
+
+  /* @mention styling in comments */
+  & .mention {
+    background-color: oklch(0.93 0.03 250);
+    border-radius: 4px;
+    padding: 1px 3px;
+    font-weight: 500;
+  }
+}

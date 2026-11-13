@@ -1,0 +1,40 @@
+/* StylePack — Slate (ported from Atlas)
+ *
+ * Geist Variable for both heading and body. Geist Mono for code/data.
+ * Imported by `src/main.tsx` AFTER `index.css` so these values win.
+ */
+
+:root {
+  --font-heading: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading-weight: 600;
+  --font-body-weight: 400;
+}
+
+/* ── Body font (StylePack-aware) ─────────────────────────────── */
+
+body {
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-weight: var(--font-body-weight);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-heading-weight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
