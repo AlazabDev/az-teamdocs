@@ -7,7 +7,7 @@ import { corsHeaders } from "../_shared/cors.ts";
 const endpoint = Deno.env.get("MINIO_ENDPOINT_URL");
 const accessKeyId = Deno.env.get("MINIO_ACCESS_KEY");
 const secretAccessKey = Deno.env.get("MINIO_SECRET_KEY");
-const bucketName = Deno.env.get("MINIO_BUCKET_NAME") || "construction-drawings";
+const bucketName = Deno.env.get("MINIO_BUCKET_NAME") || "alazab-app";
 const region = Deno.env.get("MINIO_REGION") || "us-east-1";
 
 const s3Client = new S3Client({
